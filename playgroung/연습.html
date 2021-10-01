@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <app-header></app-header>
+        <app-content></app-content>
+        <app-number v-bind:number = 'number'></app-number>
+        <app-button v-on:increase = 'addNumber'></app-button>
+        <app-footer></app-footer>
+    </div>
+
+    <script src = "https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+
+        var appHeader = {
+            template : '<h1>HEADER</h1>'
+        }
+
+        var appContent = {
+            template : '<div>CONTENT</div>'
+        }
+
+        var appFooter = {
+            template : '<footer>FOOTER</footer>'
+        }
+
+        var button = {
+            template : '<button v-on:click="addNumber">click me</button>',
+            methods : {
+                addNumber : function(){
+                    this.$emit('increase');
+                }
+
+            }
+        }
+
+        var numberComponent = {
+            template : '<h2>dddddddddddv {{number}}</h2>',
+            props : ['number']
+        }
+
+
+        new Vue({
+            el:'#app',
+            components : {
+                'app-header' : appHeader,
+                'app-content' : appContent,
+                'app-footer' : appFooter,
+                'app-number' : numberComponent,
+                'app-button': button
+            },
+            data : {
+                number : 12
+            },
+            methods : {
+                addNumber : function (){
+                    this.number += 1;
+                }
+            }
+        })
+
+
+    </script>
+
+</body>
+</html>
