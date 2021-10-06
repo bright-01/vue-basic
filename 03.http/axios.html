@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Axios</title>
+</head>
+<body>
+
+ <div id="app">
+     <button v-on:click ="getData">get user</button>
+     <div> {{ users }}</div>
+ </div>
+ <script src = "https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+ <script src = "https://unpkg.com/axios/dist/axios.min.js"></script>
+ <script>
+     new Vue({
+         el : '#app',
+         data:{
+             users : []
+         },
+         methods:{
+             getData : function(){
+                 var t = this;
+                axios.get("https://jsonplaceholder.typicode.com/users")
+                 .then(function (response){
+                     console.log(response.data)
+                     t.users = response.data;
+                 })
+                .catch(function(err){
+                    console.log(err);
+                 });
+             }
+         }
+     })
+/*
+
+
+     function  getDate2(){
+         var tableData;
+         $.get('https://domain.com/products/1', function(respose){
+             tableData = respose;
+         });
+
+         console.log("tableData : "+ tableData); // << undefined 가 나온다..
+     }
+
+     // 콜백 함수로 변경
+     function getData3 ( callBackFunc ){
+         $.get('https://domain.com/products/1', function(respose){
+             callBackFunc ( respose );
+         });
+     }
+     getData3(function (tableData){
+         console.log(tableData)
+     })
+
+
+     // promise 코드로 변경
+     function getData4 ( callback ){
+         return new Promise(function ( resolve, reject ){
+             $.get('https://domain.com/products/1', function ( response ){
+                 resolve( response )
+             })
+         })
+     }
+     getData4.then( function ( tableData ) {
+        console.log(tableData);
+     });
+
+     // async awiat 코드
+     async function logName(){ // 1. 함수 앞에 async를 붙이고
+         var user = await fetchUser('domain.com/user/1'); // 2. 비동기 처리 메서드 앞에 await를 붙인다 ( 꼭 프로미스 객체를 반환해야 한다 )
+         if ( user.id === 1) {
+             console.log(user.name);
+         }
+     }
+
+     function fetchItem(){ // 프로미스를 반환하는 메서드
+         return new Promise(function(resolve, reject){
+             var items = [1,2,3];
+             resolve(items);
+         });
+     }
+
+     async function logItems() {
+         var resultItems = await fetchItem();
+         console.log(resultItems);
+     }
+*/
+
+
+
+
+
+
+ </script>
+
+</body>
+</html>

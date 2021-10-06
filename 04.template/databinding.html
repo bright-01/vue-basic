@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        {{ num }}
+        <p v-bind:id="uuid" v-bind:class="className">{{ doubleNum}}</p>
+
+        <div v-if="loading">loading..</div>
+        <div v-else>user has been login..</div>
+        <div v-show = "loading">loding .... </div>
+        <input type="text" v-model="message" placeholder="edit me..">
+        <p>{{message}}</p>
+<!--        show , if 의 차이점은 show는 css 상으로만 제거 하고 if는 태그를 완전히 없앰 -->
+
+
+    </div>
+    <script src = "https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <script>
+        new Vue({
+            el:'#app',
+            data:{
+                num : 10,
+                uuid :'abvcasdf',
+                className : 'text-blue',
+                loading : true,
+                message: ''
+            },
+            computed : {
+                doubleNum : function (){
+                    return this.num * 2;
+                }
+            }
+        })
+    </script>
+
+</body>
+</html>
