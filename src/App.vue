@@ -1,28 +1,38 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <AppHeader v-bind:str = "stringSomthing" v-on:renew="renewString"/>
+    App {{ str }}
+    <button v-on:click="addNum" >{{num}}</button>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+
+import AppHeader from "./components/AppHeader";
 
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
+  name: "App",
+  data : function (){
+    return {
+      str : 'hi',
+      num: 1,
+      stringSomthing : 'props str'
+    }
+  },
+  methods : {
+    addNum : function (){
+      this.num = this.num +1;
+    },
+    renewString : function () {
+      this.stringSomthing += 'test  ';
+    }
+  },
+  components : {
+    AppHeader
   }
 }
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style scoped>
+
 </style>
